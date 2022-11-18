@@ -1,6 +1,12 @@
 # Testtask2
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.9.
+Made with tailwind, angular and MonobankAPI
+
+monobankAPI currency codes are equal to ISO 4217.
+840 - USD
+980 - UAH
+978 - EUR
 
 ## Development server
 
