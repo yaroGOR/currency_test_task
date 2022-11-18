@@ -19,63 +19,50 @@ export class ExchangerComponent  {
   constructor() {}
 
 
+  
+
   buyClicked() {
     this.state = 'buy';
   }
   sellClicked() {
     this.state = 'sell'
   }
-  getValue (value:ICurrency) {
-    console.log(value)
-   
+  
 
-    return value
-  }
+  
 
-  onChange(event:any, value:ICurrency, type = this.state) {
-    console.log(event)
-    console.log(value)
-    
-    console.log(this.data)
-
+  onChange_Calculate(event:any, inputValue:ICurrency, type = this.state) {
+    //
     let currencySearchResult = this.data.filter(item=>{
       return (
-        (Number(item.currencyCodeA)===Number(value.currencyBuy) && Number(item.currencyCodeB)===Number(value.currencySell))
+        (Number(item.currencyCodeA)===Number(inputValue.currencyBuy) && Number(item.currencyCodeB)===Number(inputValue.currencySell))
         ||
-        (Number(item.currencyCodeB)===Number(value.currencyBuy) && Number(item.currencyCodeA)===Number(value.currencySell))
+        (Number(item.currencyCodeB)===Number(inputValue.currencyBuy) && Number(item.currencyCodeA)===Number(inputValue.currencySell))
       )
     })
-    console.log(currencySearchResult)
-
 
     if (type === 'buy') {
-      if (Number(value.currencyBuy) === 980) {
-        console.log(value.amountBuy*1/currencySearchResult[0].rateBuy)
-       value.amountSell = Number((value.amountBuy*1/currencySearchResult[0].rateBuy).toFixed(2))
+      if (Number(inputValue.currencyBuy) === 980) {
+        inputValue.amountSell = Number((inputValue.amountBuy*1/currencySearchResult[0].rateBuy).toFixed(2))
       }
-      else if (Number(value.currencyBuy) === Number(value.currencySell)) {
-        value.amountBuy=Number(value.amountSell.toFixed(2))
+      else if (Number(inputValue.currencyBuy) === Number(inputValue.currencySell)) {
+        inputValue.amountBuy=Number(inputValue.amountSell.toFixed(2))
       }
       else {
-      console.log(value.amountBuy * currencySearchResult[0].rateSell)
-      value.amountSell = Number((value.amountBuy * currencySearchResult[0].rateSell).toFixed(2))
-
+        inputValue.amountSell = Number((inputValue.amountBuy * currencySearchResult[0].rateSell).toFixed(2))
       }
-
     }
     else if (type === 'sell') {
-      if (Number(value.currencySell) === 980) {
-        console.log(value.amountSell*1/currencySearchResult[0].rateSell)
-       value.amountBuy = Number((value.amountSell*1/currencySearchResult[0].rateSell).toFixed(2))
+      if (Number(inputValue.currencySell) === 980) {
+        inputValue.amountBuy = Number((inputValue.amountSell*1/currencySearchResult[0].rateSell).toFixed(2))
 
       }
-      else if (Number(value.currencyBuy) === Number(value.currencySell)) {
-        value.amountBuy=Number((value.amountSell).toFixed(2))
+      else if (Number(inputValue.currencyBuy) === Number(inputValue.currencySell)) {
+        inputValue.amountBuy=Number((inputValue.amountSell).toFixed(2))
       }
       else {
       
-      console.log(value.amountSell*currencySearchResult[0].rateBuy)
-      value.amountBuy = Number((value.amountSell*currencySearchResult[0].rateBuy).toFixed(2))
+        inputValue.amountBuy = Number((inputValue.amountSell*currencySearchResult[0].rateBuy).toFixed(2))
 
       }
 
